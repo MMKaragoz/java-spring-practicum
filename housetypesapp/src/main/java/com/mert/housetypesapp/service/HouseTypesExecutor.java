@@ -12,6 +12,11 @@ public class HouseTypesExecutor {
 		this.service = service;
 	}
 	
+	/**
+	 * manages the scenario from here
+	 * 
+	 */
+	
 	public void manageTheScenario() {
 		service.createBuildings();
 		

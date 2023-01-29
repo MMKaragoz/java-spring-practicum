@@ -8,12 +8,20 @@ import com.mert.housetypesapp.model.House;
 import com.mert.housetypesapp.model.Resort;
 import com.mert.housetypesapp.model.Villa;
 import com.mert.housetypesapp.service.BuildingTypes;
-
+/**
+ * 
+ * house types repository
+ *
+ */
 public class HouseTypesRepository {
 	
 	private List<Building> houses = new ArrayList<>();
 	private List<Building> villas = new ArrayList<>();
 	private List<Building> resorts = new ArrayList<>();	
+	
+	/**
+	 * creates buildings
+	 */
 	
 	public void createBuildings() {
 		
@@ -27,17 +35,54 @@ public class HouseTypesRepository {
 		System.out.println(resorts);
 	}
 	
+	/**
+	 * creates house
+	 * 
+	 * @param price
+	 * @param roomsCount
+	 * @param salonsCount
+	 * @param squareMeter
+	 * @return
+	 */
+	
 	public Building createHouse(long price, int roomsCount, int salonsCount, double squareMeter) {
 		return new House(price, roomsCount, salonsCount, squareMeter);
 	}
+	
+	/**
+	 * creates villa 
+	 * 
+	 * @param price
+	 * @param roomsCount
+	 * @param salonsCount
+	 * @param squareMeter
+	 * @return
+	 */
 	
 	public Building createVilla(long price, int roomsCount, int salonsCount, double squareMeter) {
 		return new Villa(price, roomsCount, salonsCount, squareMeter);
 	}
 	
+	/**
+	 * creates resort
+	 * 
+	 * @param price
+	 * @param roomsCount
+	 * @param salonsCount
+	 * @param squareMeter
+	 * @return
+	 */
+	
 	public Building createResort(long price, int roomsCount, int salonsCount, double squareMeter) {
 		return new Resort(price, roomsCount, salonsCount, squareMeter);
 	}
+	
+	/**
+	 * gets the building based on building type
+	 * 
+	 * @param type
+	 * @return
+	 */
 	
 	public List<Building> getBuildingByType(BuildingTypes type) {
 		if (type == BuildingTypes.House) {
@@ -49,14 +94,32 @@ public class HouseTypesRepository {
 		}
 		return null;
 	}
+	
+	/**
+	 * gets houses
+	 * 
+	 * @return
+	 */
 
 	public List<Building> getHouses() {
 		return houses;
 	}
 	
+	/**
+	 * gets villas
+	 * 
+	 * @return
+	 */
+	
 	public List<Building> getVillas() {
 		return villas;
 	}
+	
+	/**
+	 * gets resorts
+	 * 
+	 * @return
+	 */
 	
 	public List<Building> getResorts() {
 		return resorts;
