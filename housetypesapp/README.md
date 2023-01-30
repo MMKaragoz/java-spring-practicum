@@ -24,6 +24,19 @@ Note:
 - Follow the clean code principles.
 - Print all the methods in the main method to the console in a meaningful way.
 
-## Output
+### Example Output
 
-[![image](https://www.linkpicture.com/q/1896_1.png)](https://www.linkpicture.com/view.php?img=LPic63d6f13c37465730907637)
+```
+Buildings are created.
+The price of all houses: 6000000 dollars.
+The price of all villas: 12000000 dollars.
+The price of all resorts: 4500000 dollars.
+The price of all buildings: 22500000 dollars.
+The average square meter of all houses: 119,00 m².
+The average square meter of all villas: 250,00 m².
+The average square meter of all resorts: 95,00 m².
+The average square meter of all resorts: 154,67 m².
+A building with 2 room(s) and 1 salon(s) was requested to be filtered.
+There are 2 buildings as you filtered.
+[House [getPrice()=1000000, getRoomsCount()=2, getSalonsCount()=1, getSquareMeter()=74.5], Resort [getPrice()=1500000, getRoomsCount()=2, getSalonsCount()=1, getSquareMeter()=57.5]]
+```
