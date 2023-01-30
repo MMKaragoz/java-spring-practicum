@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mert.housetypesapp.model.Building;
-import com.mert.housetypesapp.model.House;
-import com.mert.housetypesapp.model.Resort;
-import com.mert.housetypesapp.model.Villa;
+import com.mert.housetypesapp.model.factory.BuildingFactory;
 import com.mert.housetypesapp.service.BuildingTypes;
 /**
  * 
@@ -24,65 +22,21 @@ public class HouseTypesRepository {
 	 */
 	
 	public void createBuildings() {
+		BuildingFactory buildingFactory = new BuildingFactory();
 		
-		for (int i = 1; i <= 3; i++) {
-			houses.add(createHouse(1000000 * i, i + 1, 1, 44.5 * i + 30));
-			villas.add(createVilla(2000000 * i, 2*i + 1, 2, 50 * (i + 3)));
-			resorts.add(createResort(1500000, i + 1, 1, 37.5 * i + 20));
+		try {
+			for (int i = 1; i <= 3; i++) {
+				houses.add(buildingFactory.createBuildingType(BuildingTypes.House,1000000 * i, i + 1, 1, 44.5 * i + 30));
+				villas.add(buildingFactory.createBuildingType(BuildingTypes.Villa, 2000000 * i, 2*i + 1, 2, 50 * (i + 3)));
+				resorts.add(buildingFactory.createBuildingType(BuildingTypes.Resort, 1500000, i + 1, 1, 37.5 * i + 20));
+			}
+		} catch (IllegalArgumentException exception) {
+			System.out.println(exception.getMessage());
 		}
 		System.out.println(houses);
 		System.out.println(villas);
 		System.out.println(resorts);
 	}
-	
-	/**
-	 * creates house
-	 * 
-	 * @param price
-	 * @param roomsCount
-	 * @param salonsCount
-	 * @param squareMeter
-	 * @return
-	 */
-	
-	public Building createHouse(long price, int roomsCount, int salonsCount, double squareMeter) {
-		return new House(price, roomsCount, salonsCount, squareMeter);
-	}
-	
-	/**
-	 * creates villa 
-	 * 
-	 * @param price
-	 * @param roomsCount
-	 * @param salonsCount
-	 * @param squareMeter
-	 * @return
-	 */
-	
-	public Building createVilla(long price, int roomsCount, int salonsCount, double squareMeter) {
-		return new Villa(price, roomsCount, salonsCount, squareMeter);
-	}
-	
-	/**
-	 * creates resort
-	 * 
-	 * @param price
-	 * @param roomsCount
-	 * @param salonsCount
-	 * @param squareMeter
-	 * @return
-	 */
-	
-	public Building createResort(long price, int roomsCount, int salonsCount, double squareMeter) {
-		return new Resort(price, roomsCount, salonsCount, squareMeter);
-	}
-	
-	/**
-	 * gets the building based on building type
-	 * 
-	 * @param type
-	 * @return
-	 */
 	
 	public List<Building> getBuildingByType(BuildingTypes type) {
 		if (type == BuildingTypes.House) {
