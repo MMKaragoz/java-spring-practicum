@@ -3,21 +3,19 @@ package com.mert.orderapp.client.dto.response;
 import java.util.List;
 import java.util.Objects;
 
-import com.mert.orderapp.entity.Invoice;
-
 public class CustomerDto {
 
 	private String name;
 	
 	private String surname;
 	
-	private List<Invoice> invoices;
+	private List<InvoiceDto> invoices;
 	
 	public CustomerDto() {
 		
 	}
 
-	public CustomerDto(String name, String surname, List<Invoice> invoices) {
+	public CustomerDto(String name, String surname, List<InvoiceDto> invoices) {
 		this.name = name;
 		this.surname = surname;
 		this.invoices = invoices;
@@ -39,11 +37,11 @@ public class CustomerDto {
 		this.surname = surname;
 	}
 
-	public List<Invoice> getInvoices() {
+	public List<InvoiceDto> getInvoices() {
 		return invoices;
 	}
 
-	public void setInvoices(List<Invoice> invoices) {
+	public void setInvoices(List<InvoiceDto> invoices) {
 		this.invoices = invoices;
 	}
 
