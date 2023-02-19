@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import com.mert.orderapp.entity.Customer;
 import com.mert.orderapp.entity.enums.Sector;
 
 public class CompanyDto extends BaseEntityDto {
@@ -13,13 +12,13 @@ public class CompanyDto extends BaseEntityDto {
 	
 	private Sector sector;
 	
-	private List<Customer> customers;
+	private List<CustomerDto> customers;
 	
 	public CompanyDto() {
 		
 	}
 
-	public CompanyDto(Date createdAt, Date updatedAt, String name, Sector sector, List<Customer> customers) {
+	public CompanyDto(Date createdAt, Date updatedAt, String name, Sector sector, List<CustomerDto> customers) {
 		super(createdAt, updatedAt);
 		this.name = name;
 		this.sector = sector;
@@ -42,11 +41,11 @@ public class CompanyDto extends BaseEntityDto {
 		this.sector = sector;
 	}
 
-	public List<Customer> getCustomers() {
+	public List<CustomerDto> getCustomers() {
 		return customers;
 	}
 
-	public void setCustomers(List<Customer> customers) {
+	public void setCustomers(List<CustomerDto> customers) {
 		this.customers = customers;
 	}
 
