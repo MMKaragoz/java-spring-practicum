@@ -1,5 +1,10 @@
 package com.mert.orderapp.controller;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,6 +45,14 @@ public class InvoiceController {
 		Invoice invoice = invoiceService.create(createInvoiceRequest);
 		InvoiceDto response = modelMapper.map(invoice, InvoiceDto.class);
 		System.out.println("here");
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<InvoiceDto>> getAll(@RequestParam Optional<BigDecimal> greaterThan){
+		List<Invoice> invoices = invoiceService.getAll(greaterThan);
+		List<InvoiceDto> response = invoices.stream().map(invoice ->  modelMapper.map(invoice, InvoiceDto.class)).collect(Collectors.toList());
 		
 		return ResponseEntity.ok(response);
 	}

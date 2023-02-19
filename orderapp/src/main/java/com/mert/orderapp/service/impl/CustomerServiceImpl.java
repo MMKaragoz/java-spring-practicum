@@ -1,5 +1,10 @@
 package com.mert.orderapp.service.impl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +38,22 @@ public class CustomerServiceImpl implements CustomerService {
 		return createdCustomer;
 	}
 	
+	@Override
+	public List<Customer> getAll(Optional<String> contains, Optional<String> creationMonth) {
+		List<Customer> customers = new ArrayList<>();
+		
+		if (contains.isPresent() && creationMonth.isPresent()) {
+			customers = customerRepository.findByNameContainsAndCreationMonth(contains, creationMonth);
+		}else if(creationMonth.isPresent()) {
+			customers = customerRepository.findByCreationMonth(creationMonth);
+		} else if(contains.isPresent()) {
+				customers = customerRepository.findByNameContains(contains);
+		} else {
+			customers = customerRepository.findAll();
+		}
+		return customers;
+	}
+	
 	protected Customer findById(String id) {
 		Customer customer = customerRepository.findById(id)
 							.orElseThrow(
@@ -61,6 +82,12 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteById(String id) {
 		findById(id);
 		customerRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Customer> getAllByInvoicesAmount(BigDecimal amount) {
+		List<Customer> customers = customerRepository.findByInvoicesAmountLessThan(amount);
+		return customers;
 	}
 
 }

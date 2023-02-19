@@ -1,5 +1,10 @@
 package com.mert.orderapp.service.impl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +35,19 @@ public class InvoiceServiceImpl implements InvoiceService {
 		Invoice createdInvoice = invoiceRepository.save(invoice);
 		
 		return createdInvoice;
+	}
+	
+	@Override
+	public List<Invoice> getAll(Optional<BigDecimal> greaterThan) {
+		List<Invoice> invoices = new ArrayList<>();
+		
+		if(greaterThan.isPresent()) {
+			invoices = invoiceRepository.findByAmountGreaterThan(greaterThan);
+		} else {
+			invoices = invoiceRepository.findAll();
+		}
+		
+		return invoices;
 	}
 	
 	protected Invoice findById(String id) {
